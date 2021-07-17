@@ -1,0 +1,61 @@
+@import 'main.css';
+
+
+#navbar2 a {
+    float: right;
+    display: block;
+    color: #4374fa;
+    padding: 5px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    height: auto;
+}
+
+#navbar2 a:hover {
+    height: auto;
+    color: blue;
+  }
+
+#navbar2 a.active {
+    border-bottom: 3px solid blue;
+    text-decoration: none;
+    color: blue;
+}
+
+.search-bar input[type=text],select{
+  margin:10px 0px 0px 0px;
+  width: 40%;
+  padding: 10px 20px 10px;
+  display: inline-block;
+  border: 1.5px solid #cddbffd0 ;
+  border-radius: 2px;
+  box-sizing: border-box;
+  font-size: 16px;
+  min-width: 500px;
+}
+
+input[type=text]:hover {
+    background-color: #cddbff36;
+  }
+
+
+.content-table{
+  width: 100%;
+  background-color: #6f95ff0c;
+}
+.content-row {
+width: 95%;
+margin: 2% 2% 2% 2%;
+padding-top:10px;
+}
+.content-row tr td{
+  margin-top: 10%;
+}
+
+#logout{
+  /* margin-top: 0.5%; */
+  width: 1.5%;
+  margin-right: 2%;
+display: inline;}

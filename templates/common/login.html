@@ -1,0 +1,59 @@
+{% extends './base.html'%}
+{% load static %}
+
+{%block title%}
+Login
+{%endblock%}
+{% block subnavbar%}
+
+<h2>Login</h2>
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <br>
+
+    <div class="card">
+        <div class="card-body">
+            {% if no == 1 %}
+            <div class="link1">
+                <a href="../login/1" class="employee">Employee</a>
+            </div>
+           <div class="link2">
+            <a href="../login/2" class="company1">Company</a>
+           </div>
+           {% elif no == 2 %}
+           <div class="link1">
+            <a href="../login/1" class="employee2">Employee</a>
+            </div>
+             <div class="link2">
+            <a href="../login/2" class="company">Company</a>
+            </div>
+            {% endif %}
+            <br>
+            <br>
+            <br>
+            <div class="form-group" >
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <p>
+                        <input type="text" placeholder="Captcha">
+                    </p>
+                    <p>
+                        <button class="btn btn-secondary" id="captcha">{{num}}
+                        </button>
+                    </p>
+                    <p><button class="btn btn-secondary" id="reg-btn">Login
+                    </button></p>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}
