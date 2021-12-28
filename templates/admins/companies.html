@@ -1,0 +1,46 @@
+{% extends './base.html' %}
+{% load static %}
+
+
+{% block title %}Admin - Companies{% endblock %}
+
+{% block bodyclass %}
+    <body id="companies" onload="changeActive(this.id)">
+{% endblock %}
+
+{% block content %}
+<!-- <div class="candidatelabel">
+    
+    <p>Companies</p>
+</div> -->
+
+<div class="container-fluid">
+    <div class="job_section">
+            <div class="excel-btn">
+               
+               <button  id="export-excel-btn"><img  id="excel" width=55 src="{% static 'excel.png'%}"><a href="/company/job-applications/export-excel/{{ i.job_id }}" >Download</a>
+               </button>
+           
+            </div>  
+<div class="datasection_candidate">
+    <table id="candidate_list1" border="1">
+        <tr>
+            <th>Sr.No</th>
+            <th>Company</th>
+            <th>Email</th>
+           
+         
+            <!-- <th>Resume</th> -->
+        
+        </tr>
+     
+    {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+        <td>
+             <a class="admin-company-name" href="/admins/companies/{{i.account_id}}">{{i.company_name}}</a>
+         </td>
+            <td>{{i.email}}</td >
+        </tr>
+            {%endfor%}
+{%endblock%}

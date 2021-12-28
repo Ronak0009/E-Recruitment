@@ -1,0 +1,76 @@
+{% extends './base.html' %}
+{% load static %}
+
+
+{% block title %}Admin - Student{% endblock %}
+
+{% block bodyclass %}
+    <body id="companies" onload="changeActive(this.id)">
+{% endblock %}
+
+{% block content %}
+<!-- <div class="candidatelabel">
+    
+    <p>Companies</p>
+</div> -->
+
+<div class="container-fluid">
+    <div class="job_section">
+            <!-- <div class="excel-btn">
+               
+               <button  id="export-excel-btn"><img  id="excel" width=55 src="{% static 'excel.png'%}"><a href="/company/job-applications/export-excel/{{ i.job_id }}" >Download</a>
+               </button>
+           
+            </div>   -->
+<div class="datasection_candidate">
+    {%if data%}
+    <table id="candidate_list1" border="1">
+        <tr>
+            <th>Sr.No</th>
+            <th>Job Title</th>
+            <th>Vacancy</th>
+            <th>Position</th>
+            <th>SSC</th>
+            <th>HSC</th>
+            <th>Graduation</th>
+            <th>Passing Year</th>
+            <th>Applications</th>
+            <th>Selected</th>
+         
+            <!-- <th>Resume</th> -->
+        
+        </tr>
+  
+    {% for i in data %}
+
+        <tr>
+            <td>{{forloop.counter}}</td>
+           
+        <td>
+             {{i.job.job_title}}
+         </td>
+       
+            <td>{{i.job.vacancies}}</td>
+            <td>{{i.job.position}}</td>
+            <td>{{i.job.ssc}}</td>
+            <td>{{i.job.hsc}}</td>
+            <td>{{i.job.graduation_cgpa}}</td>
+            <td>{{i.job.year}}</td>
+            <td> <button class="btn btn-secondary" id="admin-applications-btn"><a href="/admins/companies/{{i.company.account_id}}/{{i.job.job_id}}/">Applications</a></button></td>
+            {%if selected_data|get_item:i.job.job_title %}
+            <td><button id="admin-applications-btn" type="button" class="btn btn-primary" ><a  id="SSCa"  href="{{ selected_data_sheet.selected_sheet.url }}" download>Download</a></button>
+                {%else%}
+                <td>No Selection</td>
+                {%endif%}
+            </td>
+
+        
+        </tr>
+   
+            {%endfor%}
+        {%else%}
+        <tr>
+            <td>No Jobs</td>
+        </tr>
+        {%endif%}
+{%endblock%}

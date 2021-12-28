@@ -1,0 +1,30 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Admin-Home
+{%endblock%}
+
+{% block bodyclass %}
+    <body id="home" onload="changeActive(this.id)">
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid" id="company-content">
+
+<div class="card">
+    <div class="card-body-1">
+        <p>
+            <button class="btn btn-secondary" id="cmplt-btn"  onclick="window.open('../new-job')">Create Job
+        </button>
+     
+        <button class="btn btn-secondary" id="edit-btn"  onclick="window.open('../edit-update-job')">Edit Job
+        </button>
+    </p>
+    
+    </div>
+    <!-- <div id="company-name">{{ cm_name.0.company_name }}</div> -->
+</div>
+</div>
+{%endblock%}
