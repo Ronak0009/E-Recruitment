@@ -24,7 +24,7 @@ class LoginForm(forms.Form):
 
         try:
             email_not_valid = False
-            if not re.search(r'^\w+$', email):
+            if not re.search('^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+(.){2,10}$', email):
                 email_error = mark_safe("Invalid email")
                 email_not_valid = True
                 raise forms.ValidationError(email_error)
