@@ -1,0 +1,479 @@
+@import 'employee.css';
+
+.nav-links-company{
+    margin-left: 32%;
+  }
+
+
+.job_section{
+    background-color: rgb(255, 255, 255);;
+    border: rgb(255, 255, 255);
+    width: auto;
+    overflow: hidden;
+    min-height: 655px;
+    padding-bottom: 20px;
+    height: auto;
+    margin-top: 1%;
+    margin-left: 15px;
+    margin-right: 1%;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.30);
+}
+#job_list{
+    width: 100%;
+    font-size: 18px;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+#job_list tr td{
+    text-align: center; 
+}
+#job_list th {
+    background-color:#6F96FF;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+  }
+#job-edit-btn{
+    margin: 5% 1% 5% 1%;
+  border: 0.5px solid #6F96FF;
+  border-radius: 2px;
+  box-sizing: border-box;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  width: 70%;
+  min-width: 50px;
+  background-color: #6F96FF;
+  /* min-width:200px; */
+  box-shadow: 1px 2px 1px 1px #6f95ff2a;
+    
+}
+#job-resume-btn{
+    margin: 5% 1% 5% 1%;
+    border: 0.5px solid #6F96FF;
+    border-radius: 3px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    min-width: 80px;
+    background-color: #6F96FF;
+    /* min-width:200px; */
+    box-shadow: 1px 2px 1px 1px #6f95ff2a;
+      
+}
+
+#job-resume-btn a,#job-view-btn a{
+    text-decoration: none;
+    color: white;
+}
+#job-resume-btn:hover,#job-view-btn:hover{
+    background-color: blue;
+}
+#job-view-btn{
+    margin: 5% 1% 5% 1%;
+    border: 0.5px solid #6F96FF;
+    border-radius: 3px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    width: 60%;
+    min-width: 80px;
+    background-color: #6F96FF;
+    /* min-width:200px; */
+    box-shadow: 1px 2px 1px 1px #6f95ff2a;
+      
+
+}
+#job-delete-btn{
+    margin: 5% 1% 5% 1%;
+    border: 0.5px solid #6F96FF;
+    border-radius: 2px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    width: 55%;
+    background-color: #6F96FF;
+    min-width: 80px;
+    /* min-width:200px; */
+    box-shadow: 1px 2px 1px 1px #6f95ff2a;
+}
+#job-edit-btn:hover,#job-delete-btn:hover{
+    background-color: blue;
+}
+#job-edit-btn a,#job-delete-btn a{
+    text-decoration: none;
+    color: white;
+    min-width: 50px;
+}
+
+#company-name {
+    padding-left: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    color: black;
+  }
+
+  #export-excel-btn a{
+    color: green;
+    text-decoration: none;
+    min-width: 60px;
+}
+
+.excel-btn{
+    margin: 1% 1% 5.5% 1%;
+}
+#export-excel-btn:hover{
+    background-color: rgb(221, 255, 221);
+}
+
+#export-excel-btn{
+    margin: 1px 1px 5px 1px;
+    padding: 5px 6px 5px 2px;
+    border: 0.5px solid green;
+    /* border: 0.5px solid rgba(3, 3, 255, 0.377); */
+    border-radius: 2px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    width: 10%;
+    float: right;
+    font-size: 16px;
+    background-color: white;
+    min-width: 150px;
+    /* min-width:200px; */
+    box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+#export-excel-btn-sample{
+    margin: 1px 1px 5px 150px;
+    padding: 5px 6px 5px 2px;
+    border: 0.5px solid green;
+    /* border: 0.5px solid rgba(3, 3, 255, 0.377); */
+    border-radius: 2px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: white;
+    min-width: 100px;
+    /* min-width:200px; */
+    box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+#job-schedule-btn,#job-applications-btn{
+    margin: 5% 1% 5% 1%;
+    border: 0.5px solid #6F96FF;
+    border-radius: 3px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    min-width: 80px;
+    background-color: #6F96FF;
+    /* min-width:200px; */
+    box-shadow: 1px 2px 1px 1px #6f95ff2a;
+      
+}
+
+#job-schedule-btn a,#job-applications-btn a{
+    text-decoration: none;
+    color: white;
+}
+#job-schedule-btn:hover,#job-applications-btn:hover{
+    background-color: blue;
+}
+
+.cmpname{
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 0.5%;
+}
+
+.nocandidate{
+    background-color: #e0e4ff;
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 10%;
+    border: 0.5px solid #6f95ff2a;
+    box-shadow: 1px 2px 1px 1px #6f95ff2a;
+  }
+.nocandidate p{
+    text-align: center;
+    font-size: 18px;
+    margin-top: 2%;
+    font-weight: bold;
+  }
+
+
+  .datasection_student{
+    background-color: rgb(255, 255, 255);
+    border: rgb(255, 255, 255);
+    width: auto;
+    overflow: hidden;
+    min-height: 655px;
+    padding-bottom: 20px;
+    margin-left: 15px;
+    margin-right: 1%;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.30);
+}
+#student_list1{
+    width: 100%;
+}
+#student_list1 tr td{
+   text-align: center;
+}
+
+#student_list2{
+    width: 100%;
+}
+#student_list2 tr td{
+    padding: 15px 5px 5px 5px;
+    border-bottom: 1px solid black;
+}
+
+/*for staff*/
+.datasection_candidate{
+    background-color: rgb(255, 255, 255);;
+    border: rgb(255, 255, 255);
+    width: auto;
+    overflow: hidden;
+    min-height: 655px;
+    padding-bottom: 20px;
+    height: auto;
+    margin-left: 15px;
+    margin-right: 1%;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.30);
+}
+
+#candidate_list1{
+    width: 100%;
+}
+#candidate_list1 tr td{
+    text-align: center;
+    font-size: 16px;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+#candidate_list1 th{
+    background-color:#6F96FF;
+    font-size: 18px;
+    color: white;
+    text-align: center;}
+
+
+.job-editlist tr td{
+    width:75%;
+ }
+ .job-editlist th{
+     margin-top: 15%;
+     font-size: 18px;
+     display: inline-block;
+ }
+ .job-editlist [type=text],[type=number]{
+    width: 95%;
+    padding: 6px 10px;
+    margin: 8px 0px 0px 61px;
+    font-size: 16px;
+   
+    -ms-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    -webkit-box-sizing:content-box; 
+    box-sizing:content-box;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 0.2px solid #6F96FF;
+    border-radius: 1px;
+ }
+ 
+.form-job-group input[type=submit],input[type=button]{
+    border-radius: 4px;
+    background-color: #6F96FF; 
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    width: 15%;
+    height: auto;
+    cursor: pointer;
+    margin-top: 2%;
+    margin-left:15%;
+}
+#update{
+  
+    margin:2% 0px 1% 45%;
+}
+#update:hover,#cancel:hover,#back:hover{
+    background-color: blue;
+}
+
+#question_list{
+    width: 100%;
+    font-size: 18px;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+#question_list tr td{
+    text-align: center; 
+}
+#question_list th {
+    background-color:#6F96FF;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+  }
+
+
+
+#option-add-btn,#option-edit-btn,#option-delete-btn{
+    margin: 5% 1% 5% 1%;
+    border: 0.5px solid #6F96FF;
+    border-radius: 3px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    width: 50%;
+    min-width: 80px;
+    background-color: #6F96FF;
+    
+    /* min-width:200px; */
+    box-shadow: 1px 2px 1px 1px #6f95ff2a;
+      
+}
+.add-option-btn{
+    margin: 5% 1% 5% 10%;
+    border: 0.5px solid #6F96FF;
+    border-radius: 3px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    width: 20%;
+    min-width: 80px;
+    background-color: #6F96FF;
+    
+    /* min-width:200px; */
+    box-shadow: 1px 2px 1px 1px #6f95ff2a
+}
+.applied a,#option-add-btn a,#option-edit-btn a,#option-delete-btn a{
+    text-decoration: none;
+    color: white;
+    padding-top: 5px;
+}
+#option-add-btn:hover,#option-edit-btn:hover,#option-delete-btn:hover{
+    background-color: blue;
+}
+
+
+#question_section{
+    background-color: rgb(255, 255, 255);;
+    border: rgb(255, 255, 255);
+    width: auto;
+    overflow: hidden;
+    min-height: 655px;
+    padding-bottom: 20px;
+    height: auto;
+    margin-top: 1%;
+    margin-left: 15px;
+    margin-right: 1%;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.30);
+}
+#add-question{
+    text-align: center;
+    color: #6F96FF;
+}
+.applied{
+    margin: 5% 1% 5% 1%;
+    border: 0.5px solid green;
+    border-radius: 3px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    width: 50%;
+    min-width: 80px;
+    background-color: green;
+    
+    /* min-width:200px; */
+    box-shadow: 1px 2px 1px 1px #6f95ff2a;}
+
+
+
+.form-quiz-group p{
+        text-align: center;
+        font-size: 20px;
+        padding:1%;
+      }
+.form-quiz-group input[type=text]{
+        width: 45%;
+      }
+.form-quiz-group input[type=number]{
+    width: 41%;
+}
+.form-quiz-group input[type=text],input[type=number]{
+        padding: 8px 20px;
+        margin: 8px 0;
+        border: 0.2px solid #6F96FF;
+        border-radius: 1px;
+        /* box-sizing: border-box; */
+        text-align: center;
+        color: #121314;
+        box-shadow: 1px 2px 1px 1px #6f95ff2a;
+        font-size: 16px;
+      }
+      
+.form-quiz-group ::placeholder{
+        text-align: center;
+        font-size: 20px;
+        color: #899DED;
+        padding: 8px 20px;
+      
+      }
+
+.admin-company-name{
+text-decoration: none;
+font-size: 18px;
+font-weight: bold;
+color: black;
+}
+#admin-applications-btn{
+    margin: 5% 1% 5% 1%;
+    border: 0.5px solid #6F96FF;
+    border-radius: 3px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    width: 70%;
+    min-width: 80px;
+    background-color: #6F96FF;
+    /* min-width:200px; */
+    box-shadow: 1px 2px 1px 1px #6f95ff2a;
+}
+#admin-applications-btn a{
+    text-decoration: none;
+    color: white;
+}
+#admin-applications-btn:hover{
+    background-color: blue;
+}
+
+.no-data{
+    margin: auto;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
