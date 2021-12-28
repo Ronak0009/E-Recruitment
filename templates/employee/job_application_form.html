@@ -1,0 +1,61 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Job-Application
+{%endblock%}
+{%block bodyclass %}
+<body id="profile" onload="changeActive(this.id)">
+
+{%endblock%}
+<div class="container-fluid">
+
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+{% block subnavbar%}
+
+    {% endblock %}
+</div>     
+</nav>
+</div>
+{% block content %}
+
+
+<div class="container-fluid">
+    <br>
+    <div class="card" id="cmplt-profile-card">
+        <div class="card-body">
+            <div class="form-profile-group" >
+
+                <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <center><h3>Job-Application</h3></center><br>
+                    <!-- {{ form.as_p }}
+                    <p><button class="btn btn-secondary" id="reg-btn">Submit
+                    </button></p> -->
+                  
+                        {% if form %}
+                        <div class="note"><p><b>Note:</b> Your personal details like Name, Email, Mobile will be recorded from your profile details.
+                            <br>Please upload your latest Resume to complete the form.</p></div><br>
+                        
+                        <p>{{form.resume_file}}</p>
+                            <!-- <p>{{ field}}</p>
+                            {% if field.errors %}
+                                <p> {{ field.errors }} </p> -->
+                            <!-- {% endif %} -->
+                            <p><input type="submit" id="reg-btn" class="btn btn-secondary" value="Apply"/></p>
+                        {%else%}
+                        <div class="note">
+                            <p>Please Complete Your Profile</p>
+                        </div>
+
+                        {% endif %}
+                </form>
+               
+        
+            </div>
+
+        </div>
+    </div>
+
+
+{%endblock%}

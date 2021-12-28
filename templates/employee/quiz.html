@@ -1,0 +1,206 @@
+{% extends './quiz-base.html' %}
+{% load static %}
+
+{%block title%}
+Candidate-Quiz
+{%endblock%}
+{%block js%}
+<script type="text/javascript">
+    function preback(){window.history.forward();}
+    setTimeout("preback()",0);
+    window.onunload=function(){null};
+</script>
+{%endblock%}
+
+{% block bodyclass %}
+    <body id="recruitment" onload="changeActive(this.id)">
+{% endblock %}
+{% block subnavbar %}
+{% for i in quiz %}
+
+
+    <div class="quiz-name"><b>{{i.name}}</b>
+        <span class="badge bg-dark timer" id="hide-time">Minute Left : <span
+            id="time-left">{{i.time}}</span></span> </div>
+ 
+
+{%endfor%}
+{%endblock%}
+{% block content %}
+<!-- <input type="button" class="btn btn-secondary" value="Take This Test" onclick="window.open(openPopup('a'))"/> -->
+
+<div class="container-fluid">
+    <div class="quiz-instruction-section">
+        <p> Before attempting quiz please read all instructions carefully:</p>
+        <ol>
+            <li>All the questions are compulsory.</li>
+            <li>The quiz contains question related to backend developing.</li>
+            <li>Submit quiz before the quiz time ends.</li>
+            <li>The moment time gets over quiz will be submitted automatically.</li>
+          </ol>
+        </div>
+
+        {%for i in quiz%}
+        {% if attempt_blocked == True %}
+            <button type="button" id="start-quiz-btn" class="start btn btn-outline-primary btn-lg start-button mt-3" onclick="window.open(openPopup('./{{i.time}}/{{i.name}}'))" disabled><a href="/candidate/recruitment/"> Click Here to Start Attempting the Quiz</a></button>
+        {% else %}
+            <button type="button" id="start-quiz-btn" class="start btn btn-outline-primary btn-lg start-button mt-3" onclick="window.open(openPopup('./{{i.time}}/{{i.name}}'))"><a href="/candidate/recruitment/"> Click Here to Start Attempting the Quiz</a></button>
+        {% endif %}
+        {%endfor%}
+        <hr class="nice" style="display: none;">
+
+       
+  
+<!--   
+<script>
+        const url = window.location.href
+        const quizBox = document.getElementById('quiz-box')
+        const resultBox = document.getElementById('result-box')
+        const totalScore = document.getElementById('total')
+    
+        $.ajax({
+        type: 'GET',
+        url: `${url}data`,
+        success: function(response){
+            const data = response.data
+            data.forEach(ele => {
+                for (const [question, answers] of Object.entries(ele)){
+                 
+                    quizBox.innerHTML += `
+                        <hr class="ques" style="display:none">
+                        <div class="mb-2 ques" style="display:none">
+                            <b>${question}</b>
+                        </div>
+                    `
+                    $('.start-button').click(function () {
+                $(".ques").show();
+            });
+                        answers.forEach(answer=>{
+                        quizBox.innerHTML += `
+                            <div>
+                                <input type="radio" class="ans" style="display:none" id="${question}-${answer}" name="${question}" value="${answer}">
+                                <label for="${question}" style="display:none" class="answer">${answer}</label>
+                            </div>
+                        `
+                        $('.start-button').click(function () {
+                $(".ans").show();
+                $(".answer").show();
+            });
+                   
+                    });
+                }
+            });
+        },
+        error: function(error){
+            console.log(error)
+        }
+    });
+    
+    // timer countdown
+    document.addEventListener('DOMContentLoaded', () => {
+            const timeLeftDisplay = document.querySelector('#time-left');
+            const startbtn = document.querySelector('.start-button');
+            let timeLeft = {{quizs.time}};
+    
+            function countDown() {
+                setInterval(function () {
+                    if (timeLeft <= 0) {
+                        clearInterval(timeLeft = 0)
+                    }
+                    if (timeLeft == 0) {
+                        $(".ans").attr("disabled", true);
+                    }
+                    timeLeftDisplay.innerHTML = timeLeft
+                    timeLeft--;
+                }, 1000)
+            }
+            startbtn.addEventListener('click', countDown)
+        });
+    
+    
+    const quizForm = document.getElementById('quiz-form')
+    const csrf = document.getElementsByName('csrfmiddlewaretoken')
+    
+    const sendData = () => {
+        const elements = [...document.getElementsByClassName('ans')]
+        const data = {}
+        data['csrfmiddlewaretoken'] = csrf[0].value
+        elements.forEach(el=>{
+            if (el.checked) {
+                data[el.name] = el.value
+            } else {
+                if (!data[el.name]) {
+                    data[el.name] = null
+                }
+            }
+        });
+    
+    
+        $.ajax({
+            type: 'POST',
+            url: `${url}save/`,
+            data: data,
+            success: function(response){
+                const marks = response.marks
+                quizForm.classList.add('not-visible')
+                totalScore.innerHTML = `<h4>Final Score : ${response.score} Out Of {{quiz.number_of_questions}} marks</h4>`
+    
+    
+                marks.forEach(res=>{
+                    const resDiv = document.createElement("div")
+                    for (const [question, resp] of Object.entries(res)){
+    
+                        resDiv.innerHTML += question
+                        const cls = ['container', 'p-3', 'text-light', 'h6']
+                        resDiv.classList.add(...cls)
+    
+                        if (resp=='not answered') {
+                            resDiv.innerHTML += '- not answered'
+                            resDiv.classList.add('bg-info')
+                        }
+                        else {
+                            const answer = resp['answered']
+                            const correct = resp['correct_answer']
+    
+                            if (answer == correct) {
+                                resDiv.classList.add('bg-success')
+                                resDiv.innerHTML += ` answered: ${answer}`
+                            } else {
+                                resDiv.classList.add('bg-danger')
+                                resDiv.innerHTML += ` | correct answer: ${correct}`
+                                resDiv.innerHTML += ` | answered: ${answer}`
+                            }
+                        }
+                    }
+                    resultBox.append(resDiv)
+                })
+            },
+            error: function(error){
+                console.log(error)
+            }
+        })
+    }
+    
+    quizForm.addEventListener('submit', e=>{
+        e.preventDefault()
+    
+        sendData()
+    });
+    
+        $(document).ready(function () {
+    
+            $('.start-button').click(function () {
+                $(".start").hide();
+                $("#button1").show();
+            });
+            $("#button1").click(function () {
+                $(".total").show();
+                $("#hide-time").hide();
+            });
+        });
+      
+   
+</script>
+  -->
+</div>
+{%endblock%}

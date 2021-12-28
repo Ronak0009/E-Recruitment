@@ -1,0 +1,53 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Employee-Interest
+{%endblock%}
+
+{% block bodyclass %}
+    <body id="interest" onload="changeActive(this.id)">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="job_section">
+            <table id="job_list" border="1">
+                <tr>
+                    <th>Company</th>
+                    <th>Job Title</th>
+                    <th>Position</th>
+                    <th>Experience</th>
+                    <th>Date</th>
+                    <th>Schedule</th>
+                    <th>Result</th>
+        
+                </tr>
+        
+            {% for i in data %}
+                <tr>
+                    <td><b>{{i.company.company_name}}</b></td>
+                    <td><b>{{i.job.job_title}}</b></td>
+                    <td>{{i.job.position}}</td>
+                    <td>{{i.job.experience_required}} year(s)</td>
+                    <td>{{i.application_time}}</td>
+                    <!-- <td>Applied</td> -->
+                   
+                    <td> <button class="btn btn-secondary" id="job-schedule-btn"><a href="/candidate/applications/schedule-view/{{i.job.job_id}}">View</a></button></td>
+                    
+                    {% if i.job.job_id in results_blocked %}
+                        <td> <button class="btn btn-secondary" id="job-schedule-btn" disabled><a href="/candidate/applications/result/{{i.job.job_id}}" >View</a></button></td>
+                    {% else %}
+                        <td> <button class="btn btn-secondary" id="job-schedule-btn"><a href="/candidate/applications/result/{{i.job.job_id}}" >View</a></button></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+      
+        </div>
+    </div>
+   
+
+{% endblock %}

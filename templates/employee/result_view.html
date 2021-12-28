@@ -1,0 +1,89 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Candidate-Result
+{%endblock%}
+
+{% block bodyclass %}
+    <body id="interest" onload="changeActive(this.id)">
+{% endblock %}
+
+{%block subnavbar %}
+<h2>Result</h2>
+{%endblock%}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="job_section">
+        <h2>Round-1 {{quizname}} </h2>
+            <table id="job_list" border="1">
+                <tr>
+                    <th>Job Title</th>
+                    <th>Position</th>
+                    <th>Result</th>
+                    <th>Status</th>
+        
+                </tr>
+      
+            {%  if data != "Not Found" %}
+                <tr>
+                    <td><b>{{data.0}}</b></td>
+                    <td><b>{{data.1}}</b></td>
+                    <td><b>{{data.6}}</b></td>
+                    <td>Selected for 2nd Round</td>
+                    <!-- <td><b>{{i.job.job_title}}</b></td>
+                    <td>{{i.job.position}}</td>
+                    <td>{{i.job.experience_required}} year(s)</td>
+                    <td>{{i.application_time}}</td>
+                   
+                    <td> <button class="btn btn-secondary" id="job-schedule-btn"><a href="/candidate/applications/schedule-view/{{i.job.job_id}}">View</a></button></td>
+            
+                    <td> <button class="btn btn-secondary" id="job-schedule-btn"><a href="/candidate/applications/result/{{i.job.job_id}}" >View</a></button></td> -->
+                </tr>
+                {% else %}
+                <tr>
+                    {{data}}
+                </tr>
+                {%endif%}
+            </table>
+            <h2>Round-2</h2>
+            <table id="job_list" border="1">
+                <tr>
+                    <th>Job Title</th>
+                    <th>Position</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Link</th>
+                    
+        
+                </tr>
+      
+            {%  if data != "Not Found" %}
+                <tr>
+                    <td><b>{{data.0}}</b></td>
+                    <td><b>{{data.1}}</b></td>
+                    <td><b>{{data.7}}</b></td>
+                    <td><b>{{data.8}}</b></td>
+                    <td><b><a href="{{data.9}}">{{data.9}}</a></b></td>
+                    <!-- <td><b>{{i.job.job_title}}</b></td>
+                    <td>{{i.job.position}}</td>
+                    <td>{{i.job.experience_required}} year(s)</td>
+                    <td>{{i.application_time}}</td>
+                   
+                    <td> <button class="btn btn-secondary" id="job-schedule-btn"><a href="/candidate/applications/schedule-view/{{i.job.job_id}}">View</a></button></td>
+            
+                    <td> <button class="btn btn-secondary" id="job-schedule-btn"><a href="/candidate/applications/result/{{i.job.job_id}}" >View</a></button></td> -->
+                </tr>
+                {% else %}
+                <tr>
+                    {{data}}
+                </tr>
+                {%endif%}
+            </table>
+        </div>
+    </div>
+   
+
+{% endblock %}

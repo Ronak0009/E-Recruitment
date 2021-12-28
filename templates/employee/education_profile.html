@@ -1,0 +1,46 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Education-Profile
+{%endblock%}
+{%block bodyclass %}
+<body id="education" onload="changeActive(this.id)">
+
+{%endblock%}
+<div class="container-fluid">
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+{% block subnavbar%}
+
+{% include './profile_navbar.html' %}
+{% endblock %}
+</div>     
+</nav>
+</div>
+{% block content %}
+
+
+<div class="container-fluid">
+    <br>
+    <div class="card1" id="education-profile-card">
+        <div class="card-body">
+            <div class="educations-btns">
+                <center><h3>Educational-Details</h3></center><br>
+                <p><button class="btn btn-secondary" id="reg-btn" onclick="window.open('../education/ssc')">S.S.C Details
+                </button></p>
+                <p><button class="btn btn-secondary" id="reg-btn" onclick="window.open('../education/hsc')">H.S.C Details
+                </button></p>
+                <p><button class="btn btn-secondary" id="reg-btn" onclick="window.open('../education/graduation')">Graduate Details
+                </button></p>
+                <p><button class="btn btn-secondary" id="reg-btn" onclick="window.open('../education/experience')">Experience Details
+                </button></p>
+            </div>
+          
+            </div>
+
+        </div>
+    </div>
+
+
+{%endblock%}

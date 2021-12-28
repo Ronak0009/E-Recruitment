@@ -11,5 +11,46 @@ Employee-Interest
 
 
 {% block content %}
-j
+<div class="container-fluid">
+    <div class="job_section">
+            <table id="job_list" border="1">
+        <tr>
+         
+             <th>Date</th>
+             <th>Start-Time</th>
+             <th>Quiz</th>
+             <th>Total-Questions</th>
+             <th>Quiz Duration</th>
+             <th>Test</th>
+
+        </tr>
+        {%for i in data%}
+       <tr>
+        {%if tests|get_item:i.job%}
+           {%with tests|get_item:i.job as a %}
+           <td> {{a.0.test_date}} </td>
+           <td>{{a.0.test_time}}</td>
+           {%endwith%}
+           {%endif%}
+           {%if quiz|get_item:i.job%}
+           {%with quiz|get_item:i.job as a %}
+           <td>{{a.0.name}}</td>
+           <td>{{a.0.number_of_questions}}</td>
+           <td>{{a.0.time}} minute(s)</td>
+           {% if i.job.job_id in quiz_available %}
+                <td> <button class="btn btn-secondary" id="job-schedule-btn" ><a href="/candidate/recruitment/quiz/{{i.job.job_id}}">Quiz</a></button></td>
+           {% else %}
+                <td> <button class="btn btn-secondary" id="job-schedule-btn" disabled><a href="/candidate/recruitment/quiz/{{i.job.job_id}}">Quiz</a></button></td>
+           {% endif %}
+           {%endwith%}
+           {%endif%}
+          
+           
+         
+    </tr>
+ {%endfor%}
+    </table>
+</div>
+
+</div>
 {% endblock %}

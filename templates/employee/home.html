@@ -1,6 +1,7 @@
 {% extends './base.html' %}
 {% load static %}
 
+
 {%block title%}
 Employee-Home
 {%endblock%}
@@ -9,35 +10,147 @@ Employee-Home
     <body id="home" onload="changeActive(this.id)">
 {% endblock %}
 
+{% block candidatename%}
+{% for i in candidate_name %}
+{{i.firstName}} {{i.lastName}} &nbsp;
+ {%endfor%}
+
+{%endblock%}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="search-bar">
-        <input type="text" placeholder="Search">
-        &nbsp;&nbsp;
-        <select id="filter" name="filter">
-            <option value=""  disabled selected>Filter</option>
-            <option value="highlow">High-to-low</option>
-            <option value="lowhigh">low-to-high</option>
-          </select>
-    </div>
-</div>
 <br>
-<div class="container-fluid" id="company-content">
-    <div class="content-table">
-        <table class="content-row" border="1">
-        <tr>
-        <td>
-        </td>
-        <td>adadadsadaddads</td>
-        </tr>
-         <tr>
-        <td>a</td>
-        <td>b</td>
-        </tr>
-        </table>
-        
-    </div>
+{% if profile_empty == True %}
+<div class="register">
+    <div class="register-message">
+        <p class="no-data">
+            Please fill in your profile and education details to get job opportunities.
+        </p>
+    </div>  
+{% else %}
+    {%if not no_jobs %}
+    {% for i in info%}
+    <div class="container-fluid" id="company-content">
+        <table class="content-row" >
+            <tr>
+            <td class="company-image">
+                {% if profile_info %}
+                {%if profile_info|get_item:i.company.company_name %}
+                {%with profile_info|get_item:i.company.company_name as a %}
+                {% if a != None %}
+                {% if a.image %}
+                    <img src="{{a.image.url}}" class="img-thumbnail" id="square" alt="profile image">
+                {% else %}
+                    <img src="{% static 'default-job-pic.png' %}" class="img-thumbnail" id="square" alt="profile image">
+                {%endif%}
+                {% else %}
+                    <img src='{% static "tcs.PNG" %}' class="img-thumbnail" id="square" alt="profile image">
+                {% endif %}
+                
+                {% endwith %}    
+                {% else %}
+                    <img src='{% static "tcs.PNG" %}' class="img-thumbnail" id="square" alt="profile image">
+                {% endif %}
+                {% else %}
+                    <img src='{% static "tcs.PNG" %}' class="img-thumbnail" id="square" alt="profile image">
+            {%endif%}
+            </td>
+            <td class="company-details">
+        <br>
+            <h1>{{i.company.company_name}}</h1> 
+            
+            <h4>{{ i.job_title }}
+                    <!-- <a href="#tcs" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+                            <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
+                            <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
+                        </svg>
+                    </a> -->
+                </h4>
+            
+                <div class="subsection">
+                    <strong>Job Description: </strong> </br>
+                    {{ i.job_description|linebreaksbr }}  
+                    </div>
+                
 
-</div>
+                    <div class="subsection"></div>
+                        <strong>Experience:</strong>
+                        {% if i.experience_required == 0 %}
+                        Fresher
+                        {% else %}
+                        {{ i.experience_required }} years 
+                        {% endif %}
+            </br>
+                </div>
+                <div class="subsection">
+                    <strong>Location:</strong>
+                    {% if i.location %}
+                    {{i.location}}<br>
+                    {%endif%}
+                </div>
+                <div class="subsection">
+                    {% if i.campus_date %}
+                    <strong>Campus Date:</strong>
+                    {{i.campus_date}}<br>
+                    {%endif%}
+                </div>
+
+                <div class="subsection">
+                {% if i.maxSalary %}
+                    <strong>Salary:</strong> {{ i.salary }} - {{ i.maxSalary }} LPA<br>
+                {% else %}
+                    <strong>Salary:</strong> {{ i.salary }} LPA<br>
+                {% endif %}
+                </div>
+                <div class="subsection">
+                    {% if i.ssc or i.hsc or i.graduation_cgpa or i.experience_required%}
+                        <strong>Qualification:</strong><br>
+                        {% if i.ssc %}
+                        Minimum {{ i.ssc }} % in SSC</br>
+                        {% endif %}
+                        
+                        {% if i.hsc %}
+                        Minimum {{ i.hsc }} % in HSC</br>
+                        {% endif %}
+
+                        {% if i.graduation_cgpa %}
+                        Minimum {{ i.graduation_cgpa }} CGPA in graduation</br>
+                        {% endif %}
+                        
+                    {% endif %} 
+                
+                    </div>
+                    <div class="subsection">
+                    <strong>Vacancies:</strong> {{ i.vacancies }} 
+                    {% if applied_jobs|get_item:i.job_id %}
+                    <a href="/candidate/job-application/{{i.company.account_id}}/{{i.job_id}}/"></a><button type="button" class="applied" disabled="true">Applied</button></a>
+                    {% else %}
+                    <button type="button" class="apply"><a href="/candidate/job-application/{{i.company.account_id}}/{{i.job_id}}/">Apply</a></button>
+                    {% endif %}
+                    <br>
+                <div class="subsection">
+                        <strong>Interview Procedure:</strong></br>
+                        {% if i.aptitude_test != 'None' %}
+                        {{ i.aptitude_test }}</br>
+                        {% endif %}
+                        {% if i.video_chat != 'None' %}
+                        {{ i.video_chat }}
+                        {% endif %}
+                    </div>
+                    </div>
+                
+            </td>
+            </tr>
+    </div>
+    {% endfor %}
+
+    </table>
+    </div>
+    {%else%}
+    <div class="no-data">
+        <p>No Data to Display</p>
+    </div>
+    {%endif%}
+{% endif %}
+
 {% endblock %}

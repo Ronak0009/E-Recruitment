@@ -1,0 +1,41 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Employee-Interest
+{%endblock%}
+
+{% block bodyclass %}
+    <body id="interest" onload="changeActive(this.id)">
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="schedule_section">
+            <table id="schedule_list" border="1">
+               
+                <tr>
+                    
+           
+                    <th>Schedule</th>
+                    <th>Result</th>
+        
+                </tr>
+                {%if schedule_time %}
+                {%for i in schedule_time%}
+                <tr>
+                    <td>{{i.test_time}} on {{i.test_date}}</td>
+                    
+                    <td>{{marks}} </td>
+                </tr>
+                {% endfor %}
+               
+                {%else%}
+                <td>Not scheduled</td>
+                <td>--</td>
+                {%endif%}
+                </table>
+    </div>
+</div>
+{%endblock%}

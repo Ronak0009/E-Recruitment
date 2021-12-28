@@ -1,0 +1,57 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Personal-Profile
+{%endblock%}
+{%block bodyclass %}
+<body id="profile" onload="changeActive(this.id)">
+
+{%endblock%}
+<div class="container-fluid">
+
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+{% block subnavbar%}
+
+{% include './profile_navbar.html' %}
+{% endblock %}
+</div>     
+</nav>
+</div>
+{% block content %}
+
+
+<div class="container-fluid">
+    <br>
+    <div class="card" id="cmplt-profile-card">
+        <div class="card-body">
+            <div class="form-profile-group" >
+                {%if personal %}
+                <p> Your personal profile is completed.</p>
+                {% else %}
+                <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <center><h3>Personal Details</h3></center><br>
+                    <!-- {{ form.as_p }}
+                    <p><button class="btn btn-secondary" id="reg-btn">Submit
+                    </button></p> -->
+                        {% for field in form %}
+                            <p>{{ field }}</p>
+                            {% if field.errors %}
+                                <p> {{ field.errors }} </p>
+                            {% endif %}
+                        {% endfor %}
+                        <p><input type="submit" id="reg-btn" class="btn btn-secondary" value="Submit"/></p>
+                </form>
+                {% if img_obj %}
+            <h3>Succesfully uploaded</h3>
+            <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+        {% endif %}
+        {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+
+{%endblock%}

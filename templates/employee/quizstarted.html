@@ -1,0 +1,67 @@
+{% extends './quiz-base.html' %}
+{% load static %}
+
+{%block title%}
+Candidate-Quiz
+{%endblock%}
+
+
+{%block js%}
+<script type = "text/javascript">  
+    window.onload = function () {  
+        document.onkeydown = function (e) {  
+            return (e.which || e.keyCode) != 116;  
+        };  
+    }  
+</script>  
+<script type="text/javascript">
+    function preback(){window.history.forward();}
+    setTimeout("preback()",0);
+    window.onunload=function(){null};
+</script>
+{%endblock%}
+
+{% block bodyclass %}
+{% endblock %}
+{% block subnavbar %}
+{% for i in quiz %}
+
+
+    <div class="quiz-name"><b>{{i.name}}</b>
+        <span class="badge bg-dark timer" id="hide-time">Minute Left : <span
+           class="time" id="time-lefts">{{i.time}}:00</span></span> </div>
+           
+ 
+
+{%endfor%}
+{%endblock%}
+{% block content %}
+{%for i in question%}
+<form method="POST"> {% csrf_token %}
+<div class="container-fluid" id="quiz-question-content">
+    <table class="quiz-row">
+
+        <tr class="question-answer">
+            <td>
+                <b>Q.{{forloop.counter}} {{i.question}}</b><br>
+               
+                  {%with options_data|get_item:i.question as a %}
+             
+                <ol type="A">
+                    {%for option in a%}
+                    <input type='radio' value="{{option.content}}" name="{{i.question}}">&nbsp;{{option.content}}<br>
+                    {%endfor%}
+                    </ol>                 
+                    {%endwith%}
+                  
+               
+            </td>
+        </tr>
+       
+        </table>
+</div>
+
+{%endfor%}
+<input type="submit" value="Submit" id='quiz-submit'/>
+</form> 
+{%endblock%}
