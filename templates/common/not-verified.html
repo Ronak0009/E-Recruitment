@@ -1,0 +1,20 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Not Verified Email
+{%endblock%}
+
+{% block content %}
+<div class="register">
+    <h1>Please verify your email</h1>
+    <div class="register-message">
+        <p>
+            A verification email has been sent to your email address.</br>Click on the link in the email to verify your account.Once your account is verified, you will be able to login.
+        </p>
+    </div>  
+    <input type="button" value="Back to Dashboard" onclick="location.href='../main-dashboard'" id="dashboard-redirect"/>
+{% endblock %}
+
+</body>
+</html> 

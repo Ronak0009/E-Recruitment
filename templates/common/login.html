@@ -20,14 +20,14 @@ Login
         <div class="card-body">
             {% if no == 1 %}
             <div class="link1">
-                <a href="../login/1" class="employee">Employee</a>
+                <a href="../login/1" class="employee">Candidate</a>
             </div>
            <div class="link2">
             <a href="../login/2" class="company1">Company</a>
            </div>
            {% elif no == 2 %}
            <div class="link1">
-            <a href="../login/1" class="employee2">Employee</a>
+            <a href="../login/1" class="employee2">Candidate</a>
             </div>
              <div class="link2">
             <a href="../login/2" class="company">Company</a>
@@ -40,15 +40,7 @@ Login
                 <form method="POST">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <p>
-                        <input type="text" placeholder="Captcha">
-                    </p>
-                    <p>
-                        <button class="btn btn-secondary" id="captcha">{{num}}
-                        </button>
-                    </p>
-                    <p><button class="btn btn-secondary" id="reg-btn">Login
-                    </button></p>
+                    <p><input type="submit" class="btn btn-secondary" id="reg-btn" value="Login"></p>
                 </form>
             </div>
         </div>

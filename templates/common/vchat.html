@@ -1,0 +1,48 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Dashboard
+{%endblock%}
+{% block subnavbar%}
+<h2>Video Conference</h2>
+       
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <h3 id="label-username">Username</h3>
+
+    <div>
+        <input id="username"><button id="btn-join">Join</button>
+
+    </div>
+
+    <div class="container-fluid" id="video-grid-container">
+        <div id="video-container">
+            <div>
+                <video id="local-video" autoplay playsinline></video>
+                <button id="btn-toggle-audio">Audio Mute</button>
+                <button id="btn-toggle-video">Video Off</button>
+     </div>
+           
+        </div>
+    </div>
+
+    <div id="chat">
+        <h3>Chat</h3>
+        <div id="msgs">
+            <ul id="msg-list"></ul>
+        </div>
+
+        <div>
+            <input id="msg">
+            <button id="btn-send-msg">Send Message</button>
+            <button id="btn-share-screen">Share Screen</button>
+        </div>
+    </div>
+</div>
+
+
+{%endblock%}

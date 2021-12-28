@@ -1,0 +1,17 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Confirmation</title>
+        <style>
+            body{color: blue; }
+        </style>
+    </head>
+    <body>
+        
+        {% if success %}
+            Your account has been activated!
+        {% else %}
+            Error, invalid token!
+        {% endif %}
+    </body>
+</html>

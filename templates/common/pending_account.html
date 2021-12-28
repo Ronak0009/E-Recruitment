@@ -1,0 +1,20 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block title %}Account Created{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"/>
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/register_option.css' %}"/> -->
+{% endblock %}
+
+{% block content %}
+<div class="register">
+    <h1>Account created</h1>
+    <div class="register-message">
+        <p>
+            A verification email has been sent to your email address.</br>Click on the link in the email to verify your account.Once your account is verified, you will be able to login.
+        </p>
+    </div>  
+    <input type="button" value="Back to Dashboard" onclick="location.href='../main-dashboard'" id="dashboard-redirect"/>
+{% endblock %}
