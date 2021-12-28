@@ -1,0 +1,81 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Result
+{%endblock%}
+{%block bodyclass %}
+<body id="general" onload="changeActive(this.id)">
+
+{%endblock%}
+
+<div class="container-fluid">
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+           
+ {% block subnavbar%}
+ {%for i in quizname%}
+ <h2>{{i}}</h2>
+ {%endfor%}
+ {%endblock%}
+</div>     
+</nav>
+</div>
+{% block content %}
+
+
+
+<div class="container-fluid">
+   
+    <div class="job_section">
+            <div class="excel-btn">
+                
+               <button  id="export-excel-btn"><img  id="excel" width=55 src="{% static 'excel.png'%}"><a href="/company/recruitment/result/{{job_id}}/{{score}}/export-excel" >Download</a>
+               </button>
+              
+               <button id="online-schedule-btn-2"> <a href="/company/recruitment/result/{{job_id}}/91" >91-100</a> 
+               </button>
+               <button id="online-schedule-btn-2"> <a href="/company/recruitment/result/{{job_id}}/81" >81-90</a> 
+               </button>
+               <button id="online-schedule-btn-2"> <a href="/company/recruitment/result/{{job_id}}/71" >71-80</a> 
+               </button>
+               <button id="online-schedule-btn-2"> <a href="/company/recruitment/result/{{job_id}}/61" >61-70</a> 
+               </button>
+                <button id="online-schedule-btn-2"> <a href="/company/recruitment/result/{{job_id}}/51" >51-60</a> 
+                </button>  
+               <button id="online-schedule-btn-2"> <a href="/company/recruitment/result/{{job_id}}/online-schedule" >Schedule</a> 
+               </button>
+               <!-- <button id="online-schedule-btn-2"> <a href="#" >50-59</a> 
+               </button> -->
+             
+               </div>  
+    {% if result %}
+    <div class="job_section">
+            <table id="job_list" border="1">
+                <tr>
+                    <th>Candidate</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Score</th>
+                    
+        
+                </tr>
+        
+            {% for i in result %}
+                <tr>
+                    <td><b>{{i.candidate.firstName}}&nbsp;{{i.candidate.lastName}}</b></td>
+                    <td>{{i.candidate.email}}</td>
+                    <td>{{i.candidate.mobile}}</td>
+                    <td>{{i.score}}  </td>
+                   
+                </tr>
+                {% endfor %}
+            </table>
+      
+        </div>
+    </div>
+    {%else%}
+    <p>No Result</p>
+    {%endif%}
+
+{%endblock%}

@@ -1,0 +1,66 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Selected Candidates
+{%endblock%}
+{%block bodyclass %}
+<body id="general" onload="changeActive(this.id)">
+
+{%endblock%}
+
+<div class="container-fluid">
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+           
+ {% block subnavbar%}
+
+ <h2>Selected Candidates</h2>
+
+ {%endblock%}
+</div>     
+</nav>
+</div>
+{% block content %}
+
+
+
+<div class="container-fluid">
+   
+    <div class="job_section">
+            <div class="excel-btn">
+                
+               <button  id="online-schedule-btn-2"><a href="/company/recruitment/result/{{job_id}}/upload-selected">Upload</a></button>
+        
+             
+               </div>  
+    <!-- {% if result %}
+    <div class="job_section">
+            <table id="job_list" border="1">
+                <tr>
+                    <th>Candidate</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Score</th>
+                    
+        
+                </tr>
+        
+            {% for i in result %}
+                <tr>
+                    <td><b>{{i.candidate.firstName}}&nbsp;{{i.candidate.lastName}}</b></td>
+                    <td>{{i.candidate.email}}</td>
+                    <td>{{i.candidate.mobile}}</td>
+                    <td>{{i.score}}  </td>
+                   
+                </tr>
+                {% endfor %}
+            </table>
+      
+        </div>
+    </div>
+    {%else%}
+    <p>No Result</p>
+    {%endif%} -->
+
+{%endblock%}

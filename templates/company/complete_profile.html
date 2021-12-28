@@ -1,0 +1,56 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Company-Profile
+{%endblock%}
+{%block bodyclass %}
+<body id="profile" onload="changeActive(this.id)">
+{%endblock%}
+<div class="container-fluid">
+
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+{% block subnavbar%}
+
+{% include './profile_navbar.html' %}
+{% endblock %} 
+</div>     
+</nav>
+</div>
+{% block content %}
+
+
+<div class="container-fluid">
+    <br>
+    <div class="card" id="cmplt-profile-card">
+        <div class="card-body">
+            <div class="form-profile-group" >
+                {%if personal %}
+                <p> Your company profile is completed. To edit details click on Edit Profile.</p>
+                <p><button class="btn btn-secondary" id="personal-edit-btn">Edit Personal
+                </button></p>
+                {% else %}
+                <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <center><h3>Company Details</h3></center>
+                    </button></p>
+                        {% for field in form %}
+                            <p>{{ field }}</p>
+                            {% if field.errors %}
+                                <p> {{ field.errors }} </p>
+                            {% endif %}
+                        {% endfor %}
+                        <p><input type="submit" id="reg-btn" class="btn btn-secondary" value="Submit"/></p>
+                </form>
+                {% if img_obj %}
+            <h3>Succesfully uploaded</h3>
+            <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+        {% endif %}
+        {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+
+{%endblock%}

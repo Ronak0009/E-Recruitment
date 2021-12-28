@@ -1,0 +1,56 @@
+{% extends './base.html' %}
+{% load static %}
+{% load mathfilters %}
+
+{%block title%}
+Profile
+{%endblock%}
+
+{% block bodyclass %}
+    <body id="profile" onload="changeActive(this.id)">
+{% endblock %}
+
+
+{% block content %}
+<div class="card">
+    <div class="card-body-1">
+        <div style="margin-bottom: 7%;">
+        <p>
+            <button class="btn btn-secondary" id="cmplt-btn"  onclick="window.open('../complete-profile/company-profile')">Complete Profile
+        </button>
+    </p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body-2">
+        <div class="image">
+        {%if profile_info %}
+        {%if profile_info.image %}
+          <img src="{{ profile_info.image.url }}" class="img-thumbnail" id="circle" alt="profile image">
+        {%else%}
+            <img src="{% static 'default-job-pic.png' %}" class="img-thumbnail" id="circle" alt="profile image">
+        {% endif %}
+        </div>
+        <div class="content-2">
+        <p>
+            {% if cm_name %}
+            {%for i in cm_name%}
+            <span id="myname"><h1>&nbsp;{{ i.company_name }}</h1></span><br>
+            {%endfor%}
+            {%endif%}
+          <span id="about-line">&nbsp;&nbsp;&nbsp;&nbsp;About:{{ profile_info.about }}</span> <br><br>
+          <span id="about-line1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email: {{profile_info.email}}</span>
+        </p>
+        {% else %}
+        <h3 style="text-align: center;">No data to display <br>
+        </h3>
+       
+        </div>
+      </div>
+
+</div>
+
+{%endif%}
+{%endblock%}

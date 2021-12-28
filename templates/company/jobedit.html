@@ -1,0 +1,123 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Edit job
+{%endblock%}
+{%block bodyclass %}
+<body id="job-edit" onload="changeActive(this.id)">
+
+{%endblock%}
+
+<div class="container-fluid">
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+           
+ {% block subnavbar%}
+ <h2>Edit</h2>
+ {%endblock%}
+</div>     
+</nav>
+</div>
+{% block content %}
+<div class="container-fluid">
+    <br>
+    <div class="card" id="cmplt-profile-card">
+        <div class="card-body">
+            <div class="form-job-group" >
+
+<form method="POST" action="../edit-update-job/{{editdata.job_id}}">   
+    {% csrf_token %}
+    {{ form.errors }}
+    {{ form.non_field_errors }}
+    <table class="job-editlist" align="center"> 
+        <tr>
+            <th>Job-Id:</th>
+            <td><input type="text" name="job_id" value="{{editdata.job_id}}" readonly></td>
+        </tr>
+        <!-- <tr>
+            <th>Company:</th>
+            <td><input type="text" name="company" value="{{editdata.company}}" readonly></td>
+        </tr> -->
+
+        <tr>
+            <th>Job-Title:</th>
+            <td><input type="text" name="job_title" value="{{editdata.job_title}}"></td>
+        </tr>
+        
+
+        <tr>
+            <th>Job-Description:</th>
+            <td><input type="text" name="job_description" value="{{editdata.job_description}}"></td>
+        </tr>
+
+        <tr>
+            <th>Salary:</th>
+            <td><input type="number" name="salary" value="{{editdata.salary}}" min="0" max="1000"></td>
+        </tr>
+
+        <tr>
+            <th>Max-Salary:</th>
+            <td><input type="number" name="maxSalary" value="{{editdata.maxSalary}}"  min="0" max="1000"></td>
+        </tr>
+        <tr>
+            <th>Experience</th>
+            <td><input type="number" name="experience_required" value="{{editdata.experience_required}}" min="0" max="100"></td>
+        </tr>
+
+        <tr>
+            <th>Position:</th>
+            <td><input type="text" name="position" value="{{editdata.position}}"></td>
+        </tr>
+
+        <tr>
+            <th>Vacancies:</th>
+            <td><input type="number" name="vacancies" value="{{editdata.vacancies}}" min="0" max="500"></td>
+        </tr>
+
+        <tr>
+            <th>SSC:</th>
+            <td><input type="number" name="ssc" value="{{editdata.ssc}}" min="0" max="100"></td>
+        </tr>
+        <tr>
+            <th>HSC:</th>
+            <td><input type="number" name="hsc" value="{{editdata.hsc}}" min="0" max="100"></td>
+        </tr>
+        <tr>
+            <th>Graduation:</th>
+            <td><input type="number" name="graduation_cgpa" value="{{editdata.graduation_cgpa}}" min="0" max="100"></td>
+        </tr>
+        <tr>
+            <th>Location:</th>
+            <td><input type="text" name="location" value="{{editdata.location}}"></td>
+        </tr>
+        <tr>
+            <th>Aptitude Test:</th>
+            <td>
+                <select class="ap-test"  name="aptitude_test">
+                    <option value="Aptitude Test" >Aptitude Test</option>
+                    <option value="None" >None</option>
+
+            </td>
+        </tr>
+        <tr>
+            <th>Video Chat:</th>
+            <td>
+                <select  name="video_chat">
+                  
+                    <option value="Online Interview"  >Online Interview</option>
+                    <option value="None" >None</option>
+            </td>
+        </tr>
+        
+ 
+</table>
+<input type="submit" id="update" value="Update" onclick="staff_update()"/>
+<!-- <input type="button" id="cancel" value="Cancel"  onclick="location.href='/company/home'">
+<input type="button" id="back" value="Back"  onclick="location.href='/company/home'"> -->
+</form> 
+
+            </div>
+        </div>
+    </div></div>
+{%endblock%}

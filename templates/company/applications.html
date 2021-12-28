@@ -1,0 +1,66 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Applications
+{%endblock%}
+{%block bodyclass %}
+<body id="general" onload="changeActive(this.id)">
+
+{%endblock%}
+
+<div class="container-fluid">
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+           
+ {% block subnavbar%}
+ {% include './applications_nav.html' %}
+ {%endblock%}
+</div>     
+</nav>
+</div>
+{% block content %}
+
+<div class="container-fluid">
+    <div class="job_section">
+        <form  method="POST" > {% csrf_token %}
+            <table id="job_list" border="1">
+                <tr>
+                    
+                    <th>Job Id</th>
+                    <th>Job Title</th>
+                    <th>Position</th>
+                    <th>Experience</th>
+                    <th>Total Applicants</th>
+                    <th>Schedule</th>
+                    <th>View</th>
+                </tr>
+        
+            {% for i in form %}
+                <tr>
+                    {% if  i.university == 'Other' %}
+                    <td>{{i.job_id}}</td>
+                    <td>{{i.job_title}}</td>
+                    <td>{{i.position}}</td>
+                    <td>{{i.experience_required}} year(s)</td>
+                    <td>{{ count|get_item:i.job_id }}</td>
+                    {% if i.aptitude_test != 'None' %}
+                    <td><button class="btn btn-secondary" id="job-schedule-btn"><a href="/company/applications/{{i.job_id}}">Schedule</a></button></td>
+                    {% else %}
+                    <td>Not Applicable</td>
+                    {% endif %}
+                    <td> <button class="btn btn-secondary" id="job-applications-btn"><a href="/company/job-applications/{{i.company.account_id}}/{{i.job_id}}/">Applications</a></button></td>
+        
+                    <!-- <td> <button class="btn btn-secondary" id="job-delete-btn"><a href="../#" onclick="announcement_delete()">Delete</a></button></td> -->
+                </tr>
+                {%endif%}
+                {% endfor %}
+            </table>
+      
+        </div>
+        </form>
+    </div>
+   
+</div>
+
+{%endblock%}

@@ -1,0 +1,39 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Add- option
+{%endblock%}
+{%block bodyclass %}
+<body id="job" onload="changeActive(this.id)">
+
+{%endblock%}
+
+<div class="container-fluid">
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+           
+ {% block subnavbar%}
+<h2><center>Add- option</center></h2>
+    {% endblock %} 
+</div>     
+</nav>
+</div>
+{% block content %}
+<div class="container-fluid">
+    <br>
+    <div class="card" id="cmplt-profile-card">
+        <div class="card-body">
+            <div class="form-profile-group">
+                <form action="/company/recruitment/question/{{job_id}}/{{question_num}}/" method="POST"> 
+                    {% csrf_token %}
+                    {{ formset.as_p }}
+                    <p> <button type="submit" class="add-option-btn">Submit</button></p>
+                    <!-- <p><input type="submit" id="reg-btn" class="btn btn-secondary" value="Submit"/></p>    -->
+                </form>
+            </div>
+
+        </div>
+    </div>
+    </div>
+{% endblock %}

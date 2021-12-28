@@ -1,0 +1,53 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Recruitment
+{%endblock%}
+{%block bodyclass %}
+<body id="guni" onload="changeActive(this.id)">
+
+{%endblock%}
+
+<div class="container-fluid">
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+           
+ {% block subnavbar%}
+ {% include './recruitment_navs.html' %}
+ {%endblock%}
+</div>     
+</nav>
+</div>
+{% block content %}
+
+<div class="container-fluid">
+    <div class="job_section">
+        <form  method="POST" > {% csrf_token %}
+            <table id="job_list" border="1">
+                <tr>
+                    <th>Job Id</th>
+                    <th>Job Title</th>
+                    <th>Schedule</th>
+                    <th>Create</th>
+                </tr>
+         
+            {% for i in form %}
+                <tr>
+                    {% if  i.university == 'Ganpat University' %}
+                    <td>{{i.job_id}}</td>
+                    <td>{{i.job_title}}</td>
+                    <td>b</td>
+                    <td><button class="btn btn-secondary" id="job-schedule-btn"><a>Create</a></button></td>
+                   
+                {%endif%}
+                {% endfor %} 
+            </table>
+      
+        </div>
+        </form>
+    </div>
+   
+</div>
+
+{%endblock%}

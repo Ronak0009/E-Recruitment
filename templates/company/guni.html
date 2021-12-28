@@ -1,0 +1,125 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Ganpat - University
+{%endblock%}
+
+{% block bodyclass %}
+    <body id="guni" onload="changeActive(this.id)">
+{% endblock %}
+{% block companyname%}
+
+{% for j in cm_name %}
+{{j.company_name}} &nbsp;
+ {%endfor%}
+
+{%endblock%}
+
+{% block content %}
+
+<div class="container-fluid" id="company-content">
+
+    <div class="card">
+        <div class="card-body-1">
+            <p>
+                <button class="btn btn-secondary" id="cmplt-btn"  onclick="window.open('./new-job')">Create Job
+            </button>
+         
+            <button class="btn btn-secondary" id="edit-btn"  onclick="window.open('./edit-update-job')">Edit Job
+            </button>
+        </p>
+        
+        </div>
+    </div>
+    {% for i in jobs %}
+    <div class="container-fluid" id="company-content">
+        <table class="content-row" >
+            <tr>
+            <td class="company-image">
+                    {%if profile_info %}
+                      <img src="{{ profile_info.image.url }}" class="img-thumbnail" id="square" alt="profile image">
+                    {%endif%}
+            </td>
+            <td class="company-details">
+                {% for j in cm_name %}
+               <h1>{{j.company_name}}</h1> 
+                {%endfor%}
+               <h4>{{ i.job_title }}
+                    
+                </h4>
+                <div class="subsection">
+                <strong>Job Description:</strong></br>
+                {{ i.job_description|linebreaksbr }}
+                </div>
+                <div class="subsection">
+                    <strong>Passing Year:</strong>
+                    {{ i.year }}
+                    </div>
+                
+                <div class="subsection"></div>
+                        <strong>Experience:</strong>
+                        {% if i.experience_required == 0 %}
+                        Fresher
+                        {% else %}
+                        {{ i.experience_required }} years 
+                        {% endif %}
+            </br>
+                </div>
+    
+                <div class="subsection">
+                {% if i.maxSalary %}
+                    <strong>Salary:</strong> {{ i.salary }} - {{ i.maxSalary }} LPA<br>
+                {% else %}
+                    <strong>Salary:</strong> {{ i.salary }} LPA<br>
+                {% endif %}
+                </div>
+                <div class="subsection">
+                    {% if i.ssc or i.hsc or i.graduation_cgpa or i.experience_required%}
+                        <strong>Qualification:</strong><br>
+                        {% if i.ssc %}
+                        Minimum {{ i.ssc }} % in SSC</br>
+                        {% endif %}
+                        
+                        {% if i.hsc %}
+                        Minimum {{ i.hsc }} % in HSC</br>
+                        {% endif %}
+    
+                        {% if i.graduation_cgpa %}
+                        Minimum {{ i.graduation_cgpa }} CGPA in graduation</br>
+                        {% endif %}
+                    {% endif %} 
+                    </div>
+                    <!-- <div class="subsection">
+                    <strong>Vacancies:</strong> {{ i.vacancies }} <button type="button" class="apply"><a href="#">Edit</a></button>
+                    <br>
+                    </div> -->
+                    <div class="subsection">
+                        <strong>Location:</strong>
+                        {% if i.location %}
+                        {{i.location}}<br>
+                        {%endif%}
+                    </div>
+                    <div class="subsection">
+                        <strong>Campus Date:</strong>
+                        {% if i.campus_date %}
+                        {{i.campus_date}}<br>
+                        {%endif%}
+                    </div>
+                    <div class="subsection">
+                        <strong>Interview Procedure:</strong>
+                        {% if i.online_test != 'None' %}
+                        {{ i.online_test }}</br>
+                        {% endif %}
+                        {% if i.video_chat != 'None' %}
+                        {{ i.video_chat }}
+                        {% endif %}
+                    </div>
+            </td>
+            </tr>
+    </div>
+    {% endfor %}
+    
+    </div>
+    
+{%endblock%}

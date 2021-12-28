@@ -1,0 +1,44 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Create - Quiz
+{%endblock%}
+{%block bodyclass %}
+<body id="job" onload="changeActive(this.id)">
+
+{%endblock%}
+
+<div class="container-fluid">
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+           
+ {% block subnavbar%}
+<h2><center>Create - Quiz</center></h2>
+    {% endblock %} 
+</div>     
+</nav>
+</div>
+{% block content %}
+<div class="container-fluid">
+    <br>
+    <div class="card" id="cmplt-profile-card">
+        <div class="card-body">
+            <div class="form-quiz-group" >
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                            <p>{{ field }}</p>
+                            {% if field.errors %}
+                                <p> {{ field.errors }} </p>
+                            {% endif %}
+                    {% endfor %}
+                    <p><input type="submit" id="reg-btn" class="btn btn-secondary" value="Submit"/></p>
+                    <!-- <p><button class="btn btn-secondary" id="reg-btn">Submit -->
+                    </button></p>
+                </form>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

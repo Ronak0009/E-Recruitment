@@ -1,0 +1,80 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Recruitment
+{%endblock%}
+{%block bodyclass %}
+<body id="general" onload="changeActive(this.id)">
+
+{%endblock%}
+
+<div class="container-fluid">
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+           
+ {% block subnavbar%}
+ <!-- {% include './recruitment_navs.html' %} -->
+ {%endblock%}
+</div>     
+</nav>
+</div>
+{% block content %}
+
+<div class="container-fluid">
+    <div class="job_section">
+        <form  method="POST" > {% csrf_token %}
+            <table id="job_list" border="1">
+                <tr>
+                    <th>Job Id</th>
+                    <th>Job Title</th>
+                    <th>Schedule</th>
+                    <th>Quiz</th>
+                    <th>Questions</th>
+                    <th>Result</th>
+                    <th>Selected</th>
+                </tr>
+         
+            {% for i in form %}
+                <tr>
+                    {% if  i.university == 'Other' %}
+                    <td>{{i.job_id}}</td>
+                    <td>{{i.job_title}}</td>
+                    
+                   
+                    <td>{{schedule|get_item:i.job_id}}</td>
+                    {% if i.job_id in create_disabled %}
+                    <td><button class="btn btn-secondary" id="job-schedule-btn" disabled><a href="/company/recruitment/{{i.job_id}}">Create</a></button></td>
+                    {% else %}
+                        <td><button class="btn btn-secondary" id="job-schedule-btn"><a href="/company/recruitment/{{i.job_id}}">Create</a></button></td>
+                    {% endif %}
+                    
+                    {% if i.job_id in questions_disabled %}
+                        <td><button class="btn btn-secondary" id="job-schedule-btn" disabled><a href="/company/recruitment/question/{{i.job_id}}">Questions</a></button></td>
+                    {% else %}
+                        <td><button class="btn btn-secondary" id="job-schedule-btn"><a href="/company/recruitment/question/{{i.job_id}}">Questions</a></button></td>
+                    {% endif %}
+                    
+                    {% if i.job_id in results_disabled %}
+                            <td><button class="btn btn-secondary" id="job-schedule-btn" disabled><a href="/company/recruitment/result/{{i.job_id}}/50" >View</a></button></td>
+                            <td><button class="btn btn-secondary" id="job-schedule-btn" disabled><a href="/company/recruitment/result/{{i.job_id}}/selected">Selected</a></button></td>
+                    {% else %}
+                            <td><button class="btn btn-secondary" id="job-schedule-btn"><a href="/company/recruitment/result/{{i.job_id}}/50">View</a></button></td>
+                            {% if i.job_id in selected_disabled %}
+                                <td><button class="btn btn-secondary" id="job-schedule-btn" disabled><a href="/company/recruitment/result/{{i.job_id}}/upload-selected">Selected</a></button></td>
+                            {% else %}
+                                <td><button class="btn btn-secondary" id="job-schedule-btn"><a href="/company/recruitment/result/{{i.job_id}}/upload-selected">Selected</a></button></td>
+                            {% endif %}
+                    {% endif %}
+                   
+                {%endif%}
+                {% endfor %} 
+            </table>
+      
+        </div>
+        </form>
+    </div>
+   
+</div>
+
+{%endblock%}

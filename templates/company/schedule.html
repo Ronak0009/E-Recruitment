@@ -1,0 +1,50 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Schedule
+{%endblock%}
+{%block bodyclass %}
+<body id="schedule" onload="changeActive(this.id)">
+
+{%endblock%}
+
+<div class="container-fluid">
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+           
+ {% block subnavbar%}
+<h2><center>Create - Schedule</center></h2>
+    {% endblock %} 
+</div>     
+</nav>
+</div>
+{% block content %}
+<div class="container-fluid">
+    <br>
+    <div class="card" id="cmplt-profile-card">
+        <div class="card-body">
+            <div class="form-profile-group" >
+              {%if scheduled %}
+              <p>Quiz already scheduled
+              <br>To schedule online interview click on interview button<br>
+              <button class="btn btn-secondary" id="online-schedule-btn"><a href="/company/applications/{{job_id}}/online-schedule">Online Interview</a></button></td></p>
+              {%else%}
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                            <p>{{ field }}</p>
+                            {% if field.errors %}
+                                <p> {{ field.errors }} </p>
+                            {% endif %}
+                    {% endfor %}
+                    <p><input type="submit" id="reg-btn" class="btn btn-secondary" value="Submit"/></p>
+                    <!-- <p><button class="btn btn-secondary" id="reg-btn">Submit -->
+                    </button></p>
+                </form>
+                {%endif%}
+            </div>
+
+        </div>
+    </div>
+{%endblock%}

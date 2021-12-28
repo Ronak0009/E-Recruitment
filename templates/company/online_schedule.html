@@ -1,0 +1,49 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Schedule
+{%endblock%}
+{%block bodyclass %}
+<body id="schedule" onload="changeActive(this.id)">
+
+{%endblock%}
+
+<div class="container-fluid">
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+           
+ {% block subnavbar%}
+<h2><center>Create - Online Schedule</center></h2>
+    {% endblock %} 
+</div>     
+</nav>
+</div>
+{% block content %}
+<div class="container-fluid">
+    <br>
+    <div class="card" id="cmplt-profile-card">
+        <div class="card-body">
+            <div class="form-profile-group" >
+                <div class="note"><p><b>Instructions:</b></br> Please refer the below sample excel sheet. Fill the details in the same format and then upload.
+                    <div>
+                        <button  id="export-excel-btn-sample"><img  id="excel" width=55 src="{% static 'excel.png'%}"><a href="{% static 'sample-online-interview.xlsx' %}" >Download</a></button>
+                    </div>
+                </p></div><br>
+                <form method="POST"  enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                            <p>{{ field }}</p>
+                            {% if field.errors %}
+                                <p> {{ field.errors }} </p>
+                            {% endif %}
+                    {% endfor %}
+                    <p><input type="submit" id="reg-btn" class="btn btn-secondary" value="Submit"/></p>
+                    <!-- <p><button class="btn btn-secondary" id="reg-btn">Submit -->
+                    </button></p>
+                </form>
+            </div>
+
+        </div>
+    </div>
+{%endblock%}

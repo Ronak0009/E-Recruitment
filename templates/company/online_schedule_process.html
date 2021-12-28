@@ -1,0 +1,23 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Schedule
+{%endblock%}
+{%block bodyclass %}
+<body id="schedule" onload="changeActive(this.id)">
+
+{%endblock%}
+
+<div class="container-fluid">
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+           
+ {% block subnavbar%}
+<h2><center>Online Schedule View</center></h2>
+    {% endblock %} 
+</div>     
+</nav>
+</div>
+{% block content %}
+{%endblock%}

@@ -1,0 +1,76 @@
+{% extends './base.html' %}
+{% load static %}
+
+{%block title%}
+Create - Questions{%endblock%}
+{%block bodyclass %}
+<body id="job" onload="changeActive(this.id)">
+
+{%endblock%}
+
+<div class="container-fluid">
+    <nav class="navbar" id="navbar2">
+        <div class="nav-links">
+           
+ {% block subnavbar%}
+<!-- <h2><center>Create - Quiz</center></h2> -->
+    {% endblock %} 
+</div>     
+</nav>
+</div>
+{% block content %}
+<div class="container-fluid">
+    <br>
+    <div class="card" id="cmplt-profile-card">
+        <div class="card-body">
+            <div class="form-profile-group" >
+                {% for i in quizobj%}
+              <h2 id="add-question">Add Question for {{i.name}}</h2>
+              {%endfor%}
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                            <p>{{ field }}</p>
+                            {% if field.errors %}
+                                <p> {{ field.errors }} </p>
+                            {% endif %}
+                    {% endfor %}
+                    <p><input type="submit" id="reg-btn" class="btn btn-secondary" value="Add"/></p>
+                    <!-- <p><button class="btn btn-secondary" id="reg-btn">Submit -->
+                    </button></p>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <hr>
+
+        <div id="question_section">
+            <div class="form-profile-group">
+                <table id="question_list" border="1">
+                    <tr>
+                        <!-- <th>Job Id</th> -->
+                        <!-- <th><input id="check_all" type="checkbox"></th> -->
+                        <th>Sr.No</th>
+                        <th>Question</th>
+                        <th>Option</th>
+                    </tr>
+                    {%for i in ques%}
+                    <tr>
+                     
+                        <td>{{forloop.counter}}</td>
+                   
+                        <td>{{i.question}}</td>
+                        {% if addedoptions|get_item:i.question_num %}
+                        <td><button class="applied" disabled="true"><a>Added</a></button></a></td>
+                        {%else%}
+                        <td><button id="option-add-btn" ><a href="/company/recruitment/question/{{quiz}}/{{i.question_num}}/">Add</a></button></a></td>
+                       {%endif%}
+                    </tr>
+                    {%endfor%}
+            </div>
+            
+
+    </div>
+    </div>
+{% endblock %}
